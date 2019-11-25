@@ -1,0 +1,19 @@
+{
+  "manifest_version": 2,
+
+  "name": "Stravadd",
+  "description": "Adding stuff to Strava",
+  "version": "1.0",
+
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.strava.com/activities/*"
+      ],
+      "js": ["jquery-3.3.1.min.js", "content.js"]
+    }
+  ],
+  "permissions": [
+   "activeTab"
+   ]
+}
