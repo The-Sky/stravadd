@@ -183,3 +183,20 @@ if ($("div.label:contains('Distance')").prev().text().includes("mi")) {
 
 $(".more-stats").after("<div class='section'><div class='row'><div class='spans3' style='text-align: right;'><b>Flat:</b> </div><div class='spans5'> > 75 feet per mile</div><div class='spans3' style='text-align: right;'><b>Rolling:</b></div><div class='spans5'> 75 - 100 feet per mile</div></div><div class='row'><div class='spans3' style='text-align: right;'><b>Hilly:</b></div><div class='spans5'> ~250 feet per mile</div><div class='spans3' style='text-align: right;'><b>Mountain:</b></div><div class='spans5'> 300+ feet per mile</div></div></div>");
 $(".more-stats").after("<div class='section'><div class='row'><div class='spans8' style='text-align: right;'><font style='font-size: 20px; font-weight: 700; line-height: 28px; text-align: right;'>Elevation Type:</font></div><div class='spans4'><h3>" +  elevation_type + "</h3></div></div></div>");
+
+var dist_km = $("div.label:contains('Distance')").prev().text();
+var pace_km = $("span.run-version:contains('Pace')").parent().prev().text();
+
+var dist_mi = $("div.label:contains('Freedom Units')").prev().text();
+var pace_mi = $("span.run-version:contains('Freedom Pace')").parent().prev().text();
+
+var elevation = $("div.spans5:contains('Elevation in Feet')").next().text();
+var moving_time = $("div.label:contains('Moving Time')").prev().text();
+
+$(".activity-summary").append(`
+<textarea style='width: 75%; height: 80px'>
+Distance: ` + dist_km + ` or ` + dist_mi + `
+Pace: ` + pace_km + ` or ` + pace_mi + `
+Elevation: ` + elevation + `
+Time: ` + moving_time + `
+</textarea>`);

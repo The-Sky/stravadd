@@ -7,10 +7,16 @@
 
   "content_scripts": [
     {
-      "matches": [
-        "https://www.strava.com/activities/*"
-      ],
-      "js": ["jquery-3.3.1.min.js", "content.js"]
+      "matches": [ "https://www.strava.com/activities/*" ],
+      "js": ["jquery-3.3.1.min.js", "activities.js"]
+    },
+    {
+      "matches": [ "https://www.strava.com/dashboard/*" ],
+      "js": ["jquery-3.3.1.min.js", "dashboard.js"]
+    },
+    {
+      "matches": [ "https://www.strava.com/athletes/*/training/log" ],
+      "js": ["jquery-3.3.1.min.js", "traininglog.js"]
     }
   ],
   "permissions": [
