@@ -3,7 +3,7 @@
 
   "name": "Stravadd",
   "description": "Adding stuff to Strava",
-  "version": "1.3",
+  "version": "1.4",
 
   "content_scripts": [
     {
