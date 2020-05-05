@@ -193,21 +193,53 @@ $.expr[':'].textEquals = $.expr.createPseudo(function(arg) {
     };
 });
 
+
+
 var dist_km = $("div.label:contains('Distance')").prev().text();
-var pace_km = $("#heading > div > div > div.spans8.activity-stats.mt-md.mb-md > ul > li:nth-child(4) > div > span").parent().prev().text();
+if($("#heading > header > h2 > span").text().includes("Ride")) {
+	var pace_km = $("#heading > div > div > div.spans8.activity-stats.mt-md.mb-md > div.section.more-stats > table > tbody:nth-child(2) > tr > td:nth-child(2)").text();
+} else {
+	var pace_km = $("#heading > div > div > div.spans8.activity-stats.mt-md.mb-md > ul > li:nth-child(4) > div > span").parent().prev().text();
+}
+
+
 
 var dist_mi = $("div.label:contains('Freedom Units')").prev().text();
-var pace_mi = $("span.run-version:contains('Freedom Pace')").parent().prev().text();
+if($("#heading > header > h2 > span").text().includes("Ride")) {
+	var pace_mi = (($("#heading > div > div > div.spans8.activity-stats.mt-md.mb-md > div.section.more-stats > table > tbody:nth-child(2) > tr > td:nth-child(2)").text()).replace("km/h", "") * 0.62).toFixed(2) + "mi/h";
+} else {
+	var pace_mi = $("span.run-version:contains('Freedom Pace')").parent().prev().text();
+}
 
-var elevation = $("div.spans5:contains('Elevation in Feet')").next().text();
+
+
+if($("#heading > header > h2 > span").text().includes("Ride")) {
+	var elevation = $("#heading > div > div > div.spans8.activity-stats.mt-md.mb-md > ul:nth-child(1) > li:nth-child(4) > strong").text();
+	var elevation = elevation + " or " + (elevation.replace("m", "") * 3.28084).toFixed(0) + "ft";
+} else {
+	var elevation = $("div.spans5:contains('Elevation in Feet')").next().text();
+	var elevation = elevation + " or " + (elevation.replace("ft", "") / 3.28084).toFixed(0) + "m"
+}
 var moving_time = $("div.label:contains('Moving Time')").prev().text();
 
+
+
+if($("#heading > header > h2 > span").text().includes("Ride")) {
+	$(".activity-summary").append(`
+	<textarea style='width: 75%; height: 100px'>
+Distance: ` + dist_km + ` or ` + dist_mi + `
+Pace: ` + pace_km + ` or ` + pace_mi + `
+Power: ` + $.trim($("#heading > div > div > div.spans8.activity-stats.mt-md.mb-md > div.section.more-stats > table > tbody.show-more-block-js.hidden > tr:nth-child(2) > td:nth-child(2)").text()) + `
+Elevation: ` + elevation + `
+Time: ` + moving_time + `
+</textarea>`);
+} else {
 $(".activity-summary").append(`
 <textarea style='width: 75%; height: 80px'>
 Distance: ` + dist_km + ` or ` + dist_mi + `
 Pace: ` + pace_km + ` or ` + pace_mi + `
 Elevation: ` + elevation + `
 Time: ` + moving_time + `
-</textarea>`);
-
+	</textarea>`);
+}
 
