@@ -222,24 +222,27 @@ if($("#heading > header > h2 > span").text().includes("Ride")) {
 }
 var moving_time = $("div.label:contains('Moving Time')").prev().text();
 
-
+$(".activity-summary").append('<script src="https://js.nicedit.com/nicEdit-latest.js" type="text/javascript"></script><script type="text/javascript">bkLib.onDomLoaded(nicEditors.allTextAreas);</script>');
 
 if($("#heading > header > h2 > span").text().includes("Ride")) {
 	$(".activity-summary").append(`
-	<textarea style='width: 75%; height: 100px'>
-Distance: ` + dist_km + ` or ` + dist_mi + `
-Pace: ` + pace_km + ` or ` + pace_mi + `
-Power: ` + $.trim($("#heading > div > div > div.spans8.activity-stats.mt-md.mb-md > div.section.more-stats > table > tbody.show-more-block-js.hidden > tr:nth-child(2) > td:nth-child(2)").text()) + `
-Elevation: ` + elevation + `
-Time: ` + moving_time + `
-</textarea>`);
+	<div class="editable" style='width: 75%; height: 100px; margin-top: 5%;'>
+<b>Distance</b>: ` + dist_km + ` or ` + dist_mi + `<br>
+<b>Pace</b>: ` + pace_km + ` or ` + pace_mi + `<br>
+<b>Power</b>: ` + $.trim($("#heading > div > div > div.spans8.activity-stats.mt-md.mb-md > div.section.more-stats > table > tbody.show-more-block-js.hidden > tr:nth-child(2) > td:nth-child(2)").text()) + `<br>
+<b>Elevation</b>: ` + elevation + `<br>
+<b>Time</b>: ` + moving_time + `<br>
+</div>`);
 } else {
 $(".activity-summary").append(`
-<textarea style='width: 75%; height: 80px'>
-Distance: ` + dist_km + ` or ` + dist_mi + `
-Pace: ` + pace_km + ` or ` + pace_mi + `
-Elevation: ` + elevation + `
-Time: ` + moving_time + `
-	</textarea>`);
+<div class="editable" style='width: 75%; height: 80px; margin-top: 5%;'>
+<b>Distance</b>: ` + dist_km + ` or ` + dist_mi + `<br>
+<b>Pace</b>: ` + pace_km + ` or ` + pace_mi + `<br>
+<b>Elevation</b>: ` + elevation + `<br>
+<b>Time</b>: ` + moving_time + `<br>
+	</div>`);
 }
 
+$('.editable').each(function(){
+    this.contentEditable = true;
+});
