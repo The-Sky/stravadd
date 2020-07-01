@@ -3,7 +3,7 @@
 
   "name": "Stravadd",
   "description": "Adding stuff to Strava",
-  "version": "1.4",
+  "version": "1.5",
 
   "content_scripts": [
     {
@@ -11,7 +11,7 @@
       "js": ["jquery-3.3.1.min.js", "activities.js"]
     },
     {
-      "matches": [ "https://www.strava.com/dashboard/*" ],
+      "matches": [ "https://www.strava.com/dashboard*" ],
       "js": ["jquery-3.3.1.min.js", "dashboard.js"]
     },
     {
